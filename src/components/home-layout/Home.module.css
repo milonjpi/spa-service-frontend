@@ -1,0 +1,40 @@
+.social_icons span {
+  font-size: 28px;
+  margin: 15px 3px;
+  color: #000;
+}
+
+.menu_items{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.menu_items a {
+  font-size: 14px;
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+}
+
+.loginMenu {
+  font-size: 14px;
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+}
+
+.line {
+  height: 5px;
+  margin: 10px 0;
+  background: #000;
+}
+
+.container {
+  padding: 50px 0;
+}
+.heading {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-bottom: 40px;
+}
