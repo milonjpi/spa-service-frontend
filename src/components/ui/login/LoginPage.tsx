@@ -2,10 +2,13 @@
 
 import Form from '@/components/Forms/Form';
 import FormInput from '@/components/Forms/FormInput';
+import { useLoginMutation } from '@/redux/api/auth/authApi';
 import { loginSchema } from '@/schemas/login';
+import { storeUserInfo } from '@/services/auth.service';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Card } from 'antd';
+import { Button, Card, message } from 'antd';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { SubmitHandler } from 'react-hook-form';
 
@@ -15,8 +18,20 @@ type FormValues = {
 };
 
 const LoginPage = () => {
-  const onSubmit: SubmitHandler<FormValues> = (data: any) => {
-    console.log(data);
+  const router = useRouter();
+  const [login] = useLoginMutation();
+
+  const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
+    try {
+      const res = await login({ ...data }).unwrap();
+      if (res?.accessToken) {
+        router.push('/profile');
+        message.success('Logged in successfully!');
+      }
+      storeUserInfo({ accessToken: res?.accessToken });
+    } catch (err: any) {
+      message.error(`${err.data}`);
+    }
   };
   return (
     <div style={{ padding: '20px 0' }}>

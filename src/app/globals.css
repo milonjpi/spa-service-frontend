@@ -11,42 +11,14 @@
 #preloader {
   width: 100%;
   height: 100vh;
-  overflow: hidden;
-  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 9999999;
   pointer-events: none;
 }
 
-#preloader:after,
-#preloader:before {
-  content: '';
-  position: fixed;
-  left: 0;
-  height: 50%;
-  width: 100%;
-  background: linear-gradient(to right, #fff 0%, #fff 100%);
-  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-}
 
-#preloader:before {
-  top: 0;
-}
-
-#preloader:after {
-  bottom: 0;
-}
-
-#preloader.isDone {
-  visibility: hidden;
-  transition-delay: 0.5s;
-}
-
-#preloader.isDone:after,
-#preloader.isDone:before {
-  height: 0;
-  transition: all 0.7s cubic-bezier(1, 0, 0.55, 1);
-  transition-delay: 0.5s;
-}
 
 /* pre loader */
 .preloader-spin {

@@ -11,25 +11,27 @@ type FormConfig = {
 type FormProps = {
   children?: ReactElement | ReactNode;
   submitHandler: SubmitHandler<any>;
+  resetConfirm?: Boolean;
 } & FormConfig;
 
 const Form = ({
   children,
   submitHandler,
+  resetConfirm,
   defaultValues,
   resolver,
 }: FormProps) => {
   const formConfig: FormConfig = {};
 
-  if (!!defaultValues) formConfig["defaultValues"] = defaultValues;
-  if (!!resolver) formConfig["resolver"] = resolver;
+  if (!!defaultValues) formConfig['defaultValues'] = defaultValues;
+  if (!!resolver) formConfig['resolver'] = resolver;
   const methods = useForm<FormProps>(formConfig);
 
   const { handleSubmit, reset } = methods;
 
   const onSubmit = (data: any) => {
     submitHandler(data);
-    reset();
+    resetConfirm && reset();
   };
 
   useEffect(() => reset(defaultValues), [defaultValues, reset, methods]);
