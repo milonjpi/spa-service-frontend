@@ -36,21 +36,21 @@ const FormInput = ({
 
   return (
     <>
+      {label ? label : null}
       {required ? (
         <span
           style={{
-            color: "red",
+            color: 'red',
           }}
         >
           *
         </span>
       ) : null}
-      {label ? label : null}
       <Controller
         control={control}
         name={name}
         render={({ field }) =>
-          type === "password" ? (
+          type === 'password' ? (
             <Input.Password
               type={type}
               size={size}
@@ -69,7 +69,7 @@ const FormInput = ({
           )
         }
       />
-      <small style={{ color: "red" }}>{errorMessage}</small>
+      <small style={{ color: 'red' }}>{errorMessage}</small>
     </>
   );
 };

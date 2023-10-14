@@ -20,7 +20,7 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
       <HomeHeader />
       <Content
         style={{
-          padding: '0 24px',
+          padding: '12px 24px',
           minHeight: '60vh',
         }}
       >
@@ -38,7 +38,7 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
             fontSize: '28px',
           }}
         >
-          PC HOUSE LIMITED
+          {'24/7 SPA SERVICE'}
         </h2>
         <p className={styles.social_icons}>
           <FacebookFilled />
@@ -49,7 +49,7 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
 
           <LinkedinFilled />
         </p>
-        PC HOUSE ©2023 All right reserved.
+        {'24/7 Spa Service ©2023 All right reserved.'}
       </Footer>
     </Layout>
   );
