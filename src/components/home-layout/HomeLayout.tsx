@@ -1,16 +1,13 @@
 'use client';
 import {
-  MenuOutlined,
   FacebookFilled,
   LinkedinFilled,
   GoogleSquareFilled,
   TwitterSquareFilled,
-  DownOutlined,
 } from '@ant-design/icons';
-import { Button, Col, Dropdown, Layout, Menu, Row, Space } from 'antd';
-const { Header, Sider, Content, Footer } = Layout;
+import { Layout } from 'antd';
+const { Content, Footer } = Layout;
 import styles from './Home.module.css';
-import Link from 'next/link';
 import React from 'react';
 import HomeHeader from './HomeHeader';
 

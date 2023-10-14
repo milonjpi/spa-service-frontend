@@ -22,6 +22,7 @@ const LoginPage = () => {
   const [login] = useLoginMutation();
 
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
+    message.loading('Login.....');
     try {
       const res = await login({ ...data }).unwrap();
       if (res?.accessToken) {

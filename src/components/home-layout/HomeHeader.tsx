@@ -1,12 +1,55 @@
 'use client';
-import { MenuOutlined } from '@ant-design/icons';
-import { Col, Dropdown, Layout, Menu, Row } from 'antd';
+import { MenuOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Col, Dropdown, Layout, Menu, MenuProps, Row } from 'antd';
 import Link from 'next/link';
 const { Header } = Layout;
 import styles from './Home.module.css';
 import { mainMenuItems } from '@/constants/homeHeaderItems';
+import { isLoggedIn, removeUserInfo } from '@/services/auth.service';
+import { useRouter } from 'next/router';
+import { authKey } from '@/constants/storageKey';
 
 const HomeHeader = () => {
+  const userLoggedIn = isLoggedIn();
+
+  const logOut = () => {
+    removeUserInfo(authKey);
+  };
+  const extendedItems: MenuProps['items'] = [
+    {
+      key: 'user',
+      label: <UserOutlined />,
+      children: userLoggedIn
+        ? [
+            {
+              key: 'dashboard',
+              label: <Link href="/profile">Dashboard</Link>,
+            },
+            {
+              key: 'logout',
+              label: (
+                <Button onClick={logOut} type="text" danger>
+                  Logout
+                </Button>
+              ),
+            },
+          ]
+        : [
+            {
+              key: 'signup',
+              label: <Link href="/signup">Sign Up</Link>,
+            },
+            {
+              key: 'login',
+              label: <Link href="/login">Login</Link>,
+            },
+          ],
+    },
+  ];
+  const finalMenus: MenuProps['items'] = [
+    ...(mainMenuItems || []),
+    ...extendedItems,
+  ];
   return (
     <Header>
       <Row>
@@ -28,14 +71,14 @@ const HomeHeader = () => {
             theme="dark"
             mode="horizontal"
             selectable={false}
-            items={mainMenuItems}
+            items={finalMenus}
             className={styles.menu_items}
           />
         </Col>
         <Col xs={6} md={0} style={{ textAlign: 'right' }}>
           <Dropdown
             menu={{
-              items: mainMenuItems,
+              items: finalMenus,
             }}
             trigger={['click']}
           >

@@ -1,5 +1,4 @@
-import { Avatar, MenuProps, Space } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { MenuProps } from 'antd';
 const { default: Link } = require('next/link');
 
 // dropdown header
@@ -9,29 +8,15 @@ export const mainMenuItems: MenuProps['items'] = [
     label: <Link href="/">Home</Link>,
   },
   {
-    key: 'service',
+    key: 'services',
     label: <Link href="/services">Services</Link>,
   },
   {
-    key: 'blog',
+    key: 'blogs',
     label: <Link href="/blogs">Blogs</Link>,
   },
   {
-    key: 'faq',
+    key: 'faqs',
     label: <Link href="/faqs">FAQs</Link>,
-  },
-  {
-    key: 'user',
-    label: <UserOutlined />,
-    children: [
-      {
-        key: 'user-register',
-        label: <Link href="/signup">Sign Up</Link>,
-      },
-      {
-        key: 'user-login',
-        label: <Link href="/login">Login</Link>,
-      },
-    ],
   },
 ];
