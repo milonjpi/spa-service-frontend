@@ -8,3 +8,10 @@ export const roleOptions = [
     value: 'super_admin',
   },
 ];
+
+
+export const roleShower = {
+  admin: 'Admin',
+  super_admin: 'Super Admin',
+  user: 'User',
+};

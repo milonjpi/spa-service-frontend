@@ -24,7 +24,6 @@ type FormValues = {
 const CreateUser = ({ open, handleClose }: IProps) => {
   const [createUser] = useCreateUserMutation();
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
-    console.log(data);
     message.loading('Creating.....');
     try {
       const res = await createUser({ ...data }).unwrap();
