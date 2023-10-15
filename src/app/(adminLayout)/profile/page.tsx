@@ -1,4 +1,4 @@
-import ProfilePage from '@/components/ui/profile/ProfilePage';
+import ProfilePage from '@/components/ui-pages/profile/ProfilePage';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

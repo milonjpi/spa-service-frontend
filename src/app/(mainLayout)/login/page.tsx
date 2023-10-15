@@ -1,4 +1,4 @@
-import LoginPage from '@/components/ui/login/LoginPage';
+import LoginPage from '@/components/ui-pages/login/LoginPage';
 import { Metadata } from 'next';
 import React from 'react';
 

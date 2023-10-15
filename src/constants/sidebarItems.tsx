@@ -67,7 +67,7 @@ export const sidebarItems = (role: string) => {
       icon: <TableOutlined />,
     },
     {
-      key: 'Feedback',
+      key: 'feedback',
       label: <Link href={`/${role}/feedback`}>My Feedback</Link>,
       icon: <AppstoreOutlined />,
     },

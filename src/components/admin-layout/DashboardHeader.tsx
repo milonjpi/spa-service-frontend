@@ -8,6 +8,7 @@ const { Header: AntHeader } = Layout;
 
 const DashboardHeader = () => {
   const router = useRouter();
+  const { role } = getUserInfo() as any;
 
   const logOut = () => {
     removeUserInfo(authKey);
@@ -28,7 +29,7 @@ const DashboardHeader = () => {
       ),
     },
   ];
-  const { role } = getUserInfo() as any;
+
   return (
     <AntHeader
       style={{

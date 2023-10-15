@@ -1,4 +1,4 @@
-import RegisterPage from '@/components/ui/register/RegisterPage';
+import RegisterPage from '@/components/ui-pages/register/RegisterPage';
 import { Metadata } from 'next';
 import React from 'react';
 

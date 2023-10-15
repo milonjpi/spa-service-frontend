@@ -4,12 +4,15 @@ import { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import { sidebarItems } from '@/constants/sidebarItems';
 import { getUserInfo } from '@/services/auth.service';
+import { usePathname } from 'next/navigation';
 const { Sider } = Layout;
 
 const DashboardSidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   const { role } = getUserInfo() as any;
+  const pathname = usePathname();
+  const path = pathname.split('/')[2] || 'profile';
 
   return (
     <Sider
@@ -40,7 +43,7 @@ const DashboardSidebar = () => {
       </div>
       <Menu
         theme="dark"
-        defaultSelectedKeys={['profile']}
+        defaultSelectedKeys={[path]}
         mode="inline"
         items={sidebarItems(role)}
       />
