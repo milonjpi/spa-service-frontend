@@ -1,11 +1,7 @@
-import React from 'react';
+import { redirect } from 'next/navigation';
 
 const SuperAdminPage = () => {
-  return (
-    <div>
-      <p>Super Admin Page</p>
-    </div>
-  );
+  return redirect('/profile');
 };
 
 export default SuperAdminPage;

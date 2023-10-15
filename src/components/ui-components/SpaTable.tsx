@@ -3,6 +3,7 @@
 import { Table } from 'antd';
 
 type TableProps = {
+  rowKey: string;
   loading?: boolean;
   columns: any;
   dataSource: any;
@@ -15,6 +16,7 @@ type TableProps = {
 };
 
 const SpaTable = ({
+  rowKey,
   loading = false,
   columns,
   dataSource,
@@ -37,6 +39,7 @@ const SpaTable = ({
 
   return (
     <Table
+      rowKey={rowKey}
       loading={loading}
       columns={columns}
       dataSource={dataSource}

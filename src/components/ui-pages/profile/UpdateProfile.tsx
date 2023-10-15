@@ -1,9 +1,8 @@
 import Form from '@/components/Forms/Form';
 import FormInput from '@/components/Forms/FormInput';
-import FormSelectField from '@/components/Forms/FormSelectField';
-import { roleOptions } from '@/constants/global';
-import { useCreateUserMutation } from '@/redux/api/user/userApi';
-import { userSchema } from '@/schemas/userSchema';
+import { useUpdateProfileMutation } from '@/redux/api/profile/profileApi';
+import { updateProfileSchema } from '@/schemas/userSchema';
+import { IUser } from '@/types';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Col, Modal, Row, message } from 'antd';
 import React from 'react';
@@ -12,39 +11,51 @@ import { SubmitHandler } from 'react-hook-form';
 type IProps = {
   open: boolean;
   handleClose: any;
+  preData: IUser;
 };
 
 type FormValues = {
   fullName: string;
   email: string;
-  password: string;
-  role: 'super_admin' | 'admin' | 'user';
+  mobile?: string;
+  address?: string;
 };
 
-const CreateUser = ({ open, handleClose }: IProps) => {
-  const [createUser] = useCreateUserMutation();
+const UpdateProfile = ({ open, handleClose, preData }: IProps) => {
+  const [updateProfile] = useUpdateProfileMutation();
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
-    message.loading('Creating.....');
     try {
-      const res = await createUser({ ...data }).unwrap();
+      message.loading('Updating.....');
+      const res = await updateProfile({ ...data }).unwrap();
       if (res?.id) {
-        message.success('User Created successfully!');
+        message.success('Profile Updated successfully!');
         handleClose();
       }
     } catch (err: any) {
       message.error(`${err.data}`);
     }
   };
+
+  const defaultValues = {
+    fullName: preData?.fullName || '',
+    email: preData?.email || '',
+    mobile: preData?.mobile || '',
+    address: preData?.address || '',
+  };
   return (
     <Modal
-      title="Create User"
+      title="Update Profile"
       open={open}
       onCancel={handleClose}
       width={600}
       footer={null}
     >
       <div style={{ paddingTop: 10 }}>
-        <Form submitHandler={onSubmit} resolver={yupResolver(userSchema)}>
+        <Form
+          submitHandler={onSubmit}
+          resolver={yupResolver(updateProfileSchema)}
+          defaultValues={defaultValues}
+        >
           <Row gutter={[16, 16]}>
             <Col xs={24} md={12}>
               <FormInput
@@ -69,21 +80,19 @@ const CreateUser = ({ open, handleClose }: IProps) => {
             <Col xs={24} md={12}>
               <FormInput
                 type="text"
-                name="password"
+                name="mobile"
                 size="large"
-                label="Password"
-                placeholder="Type Password"
-                required
+                label="Mobile No"
+                placeholder="Type Mobile No"
               />
             </Col>
             <Col xs={24} md={12}>
-              <FormSelectField
+              <FormInput
+                type="text"
+                name="address"
                 size="large"
-                name="role"
-                options={roleOptions}
-                label="Role"
-                placeholder="Select"
-                required
+                label="Address"
+                placeholder="Type Address"
               />
             </Col>
             <Col xs={24}>
@@ -93,7 +102,7 @@ const CreateUser = ({ open, handleClose }: IProps) => {
                 type="primary"
                 style={{ width: '100%' }}
               >
-                Create
+                Update
               </Button>
             </Col>
           </Row>
@@ -103,4 +112,4 @@ const CreateUser = ({ open, handleClose }: IProps) => {
   );
 };
 
-export default CreateUser;
+export default UpdateProfile;

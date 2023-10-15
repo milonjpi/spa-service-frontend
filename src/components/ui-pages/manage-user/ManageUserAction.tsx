@@ -4,6 +4,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { useDeleteUserMutation } from '@/redux/api/user/userApi';
 import ConfirmDialog from '@/components/ui-components/ConfirmDialog';
+import UpdateUser from './UpdateUser';
 
 type IProps = {
   data: IUser;
@@ -33,7 +34,7 @@ const ManageUserAction = ({ data }: IProps) => {
         style={{
           margin: '0px 5px',
         }}
-        onClick={() => console.log(data)}
+        onClick={() => setOpen(true)}
         type="primary"
       >
         <EditOutlined />
@@ -49,6 +50,11 @@ const ManageUserAction = ({ data }: IProps) => {
         <DeleteOutlined />
       </Button>
       {/* popup items */}
+      <UpdateUser
+        open={open}
+        handleClose={() => setOpen(false)}
+        preData={data}
+      />
       <ConfirmDialog
         title="Delete User"
         open={confirm}

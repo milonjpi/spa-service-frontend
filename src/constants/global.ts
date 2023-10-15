@@ -4,14 +4,7 @@ export const roleOptions = [
     value: 'admin',
   },
   {
-    label: 'Super Admin',
-    value: 'super_admin',
+    label: 'User',
+    value: 'user',
   },
 ];
-
-
-export const roleShower = {
-  admin: 'Admin',
-  super_admin: 'Super Admin',
-  user: 'User',
-};

@@ -76,12 +76,23 @@ const ManageUserPage = () => {
       sorter: true,
     },
     {
+      title: 'Address',
+      dataIndex: 'mobile',
+      render: (el: string) => el || 'n/a',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      render: (el: string) => el || 'n/a',
+    },
+    {
       title: 'Role',
       dataIndex: 'role',
       sorter: true,
     },
     {
       title: 'Action',
+      key: 'id',
       render: (data: IUser) => <ManageUserAction data={data} />,
     },
   ];
@@ -121,11 +132,12 @@ const ManageUserPage = () => {
 
       {/* data table */}
       <SpaTable
+        rowKey="id"
         loading={isLoading}
         columns={columns}
         dataSource={users}
         pageSize={size}
-        totalPages={meta?.total}
+        totalPages={meta?.totalPage}
         showSizeChanger={true}
         onPaginationChange={onPaginationChange}
         onTableChange={onTableChange}
