@@ -1,9 +1,5 @@
 import type { MenuProps } from 'antd';
-import {
-  ProfileOutlined,
-  TableOutlined,
-  AppstoreOutlined,
-} from '@ant-design/icons';
+import { ProfileFilled, WindowsFilled } from '@ant-design/icons';
 import Link from 'next/link';
 import { USER_ROLE } from './role';
 
@@ -12,7 +8,7 @@ export const sidebarItems = (role: string) => {
     {
       key: 'profile',
       label: <Link href="/profile">Profile</Link>,
-      icon: <ProfileOutlined />,
+      icon: <ProfileFilled />,
     },
   ];
 
@@ -20,7 +16,7 @@ export const sidebarItems = (role: string) => {
     {
       key: 'manage-user',
       label: <Link href={`/${role}/manage-user`}>Manage User</Link>,
-      icon: <TableOutlined />,
+      icon: <WindowsFilled />,
     },
   ];
 
@@ -30,27 +26,27 @@ export const sidebarItems = (role: string) => {
     {
       key: 'manage-service',
       label: <Link href={`/${role}/manage-service`}>Manage Service</Link>,
-      icon: <TableOutlined />,
+      icon: <WindowsFilled />,
     },
     {
       key: 'manage-booking',
       label: <Link href={`/${role}/manage-booking`}>Manage Booking</Link>,
-      icon: <AppstoreOutlined />,
+      icon: <WindowsFilled />,
     },
     {
       key: 'manage-blog',
       label: <Link href={`/${role}/manage-blog`}>Manage Blog</Link>,
-      icon: <AppstoreOutlined />,
+      icon: <WindowsFilled />,
     },
     {
       key: 'manage-faq',
       label: <Link href={`/${role}/manage-faq`}>Manage FAQ</Link>,
-      icon: <AppstoreOutlined />,
+      icon: <WindowsFilled />,
     },
     {
       key: 'user-feedback',
       label: <Link href={`/${role}/user-feedback`}>User Feedback</Link>,
-      icon: <AppstoreOutlined />,
+      icon: <WindowsFilled />,
     },
   ];
 
@@ -64,12 +60,12 @@ export const sidebarItems = (role: string) => {
     {
       key: 'booking-history',
       label: <Link href={`/${role}/booking-history`}>Booking History</Link>,
-      icon: <TableOutlined />,
+      icon: <WindowsFilled />,
     },
     {
       key: 'feedback',
       label: <Link href={`/${role}/feedback`}>My Feedback</Link>,
-      icon: <AppstoreOutlined />,
+      icon: <WindowsFilled />,
     },
   ];
 

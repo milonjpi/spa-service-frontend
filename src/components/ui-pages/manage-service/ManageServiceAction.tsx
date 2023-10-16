@@ -18,10 +18,10 @@ const ManageServiceAction = ({ data }: IProps) => {
   const handleDelete = async () => {
     try {
       message.loading('Deleting.....');
+      setConfirm(false);
       const res = await deleteService(data?.id).unwrap();
       if (res) {
         message.success('Service Successfully Deleted!');
-        setConfirm(false);
       }
     } catch (error: any) {
       message.error(`${error.data}`);

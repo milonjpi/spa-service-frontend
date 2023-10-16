@@ -2,21 +2,18 @@
 
 import CardAction from '@/components/ui-components/CardAction';
 import MainCard from '@/components/ui-components/MainCard';
-import CreateUser from './CreateUser';
 import { useState } from 'react';
 import SpaTable from '@/components/ui-components/SpaTable';
 import { useDebounced } from '@/redux/hooks';
-import { useGetUserQuery } from '@/redux/api/user/userApi';
 import { Button, Input, Row } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
-import { IUser } from '@/types';
-import ManageUserAction from './ManageUserAction';
-import { getUserInfo } from '@/services/auth.service';
-import { USER_ROLE } from '@/constants/role';
+import { IBlog, IUser } from '@/types';
+import { useGetBlogQuery } from '@/redux/api/blog/blogApi';
+import ManageBlogAction from './ManageBlogAction';
+import CreateBlog from './CreateBlog';
 
-const ManageUserPage = () => {
+const ManageBlogPage = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const { role } = getUserInfo() as any;
 
   // filtering and pagination
   const query: Record<string, any> = {};
@@ -32,12 +29,6 @@ const ManageUserPage = () => {
   query['sortBy'] = sortBy;
   query['sortOrder'] = sortOrder;
 
-  if (role === USER_ROLE.SUPER_ADMIN) {
-    query['role'] = JSON.stringify(['super_admin', 'admin']);
-  } else {
-    query['role'] = JSON.stringify(['admin', 'user']);
-  }
-
   const debouncedSearchTerm = useDebounced({
     searchQuery: searchTerm,
     delay: 600,
@@ -46,9 +37,9 @@ const ManageUserPage = () => {
   if (!!debouncedSearchTerm) {
     query['searchTerm'] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useGetUserQuery({ ...query });
+  const { data, isLoading } = useGetBlogQuery({ ...query });
 
-  const users = data?.users;
+  const users = data?.blogs;
   const meta = data?.meta;
   const onPaginationChange = (page: number, pageSize: number) => {
     console.log('Page:', page, 'PageSize:', pageSize);
@@ -75,44 +66,33 @@ const ManageUserPage = () => {
       render: (data: any, item: any, index: any) => (page - 1) * 10 + index + 1,
     },
     {
-      title: 'Name',
-      dataIndex: 'fullName',
+      title: 'Blog Title',
+      dataIndex: 'title',
       sorter: true,
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      sorter: true,
+      title: 'Description',
+      dataIndex: 'description',
     },
     {
-      title: 'Mobile',
-      dataIndex: 'mobile',
-      render: (el: string) => el || 'n/a',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      render: (el: string) => el || 'n/a',
-    },
-    {
-      title: 'Role',
-      dataIndex: 'role',
-      sorter: true,
+      title: 'Written By',
+      dataIndex: 'writtenBy',
+      render: (el: IUser) => el.fullName,
     },
     {
       title: 'Action',
       align: 'center',
-      render: (data: IUser) => <ManageUserAction data={data} />,
+      render: (data: IBlog) => <ManageBlogAction data={data} />,
     },
   ];
 
   return (
     <MainCard
-      title="Manage User"
-      extra={<CardAction title="Add User" onClick={() => setOpen(true)} />}
+      title="Manage Blog"
+      extra={<CardAction title="Add Blog" onClick={() => setOpen(true)} />}
     >
       {/* popup Items */}
-      <CreateUser open={open} handleClose={() => setOpen(false)} />
+      <CreateBlog open={open} handleClose={() => setOpen(false)} />
       {/* popup Items */}
 
       {/* filter area */}
@@ -156,4 +136,4 @@ const ManageUserPage = () => {
   );
 };
 
-export default ManageUserPage;
+export default ManageBlogPage;

@@ -57,3 +57,23 @@ export interface IService {
 
 export type IServiceCategory = 'male' | 'female';
 export type IServiceStatus = 'upcoming' | 'available' | 'notAvailable';
+
+
+export interface IBlog {
+  id: string;
+  title: string;
+  description: string;
+  photo?: string;
+  userId: number;
+  writtenBy?: IUser;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IFaq {
+  id: string;
+  question: string;
+  answer: string;
+  createdAt: string;
+  updatedAt: string;
+}

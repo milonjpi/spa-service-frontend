@@ -96,7 +96,7 @@ const ManageServicePage = () => {
     },
     {
       title: 'Action',
-      key: 'id',
+      align: 'center',
       render: (data: IService) => <ManageServiceAction data={data} />,
     },
   ];
