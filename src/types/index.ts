@@ -35,9 +35,14 @@ export interface IUser {
   mobile?: string;
   address?: string;
   role: string;
-  profileImg: string;
+  profileImg?: string;
   createdAt: string;
   updatedAt: string;
+  reviewRatings?: IReview[];
+  bookings?: IBooking[];
+  notifications?: INotification[];
+  feedbacks?: IFeedback[];
+  blogs?: IBlog[];
 }
 
 export type IRole = 'super_admin' | 'admin' | 'user';
@@ -53,18 +58,65 @@ export interface IService {
   status: string;
   createdAt: string;
   updatedAt: string;
+  reviewRatings?: IReview[];
+  bookings?: IBooking[];
 }
 
 export type IServiceCategory = 'male' | 'female';
 export type IServiceStatus = 'upcoming' | 'available' | 'notAvailable';
 
+export interface IReview {
+  id: string;
+  serviceId: string;
+  service?: IService;
+  userId: string;
+  user?: IUser;
+  review: string;
+  rating: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IBooking {
+  id: string;
+  bookingNo: string;
+  serviceId: string;
+  service?: IService;
+  userId: string;
+  user?: IUser;
+  scheduleTime: string;
+  price: number;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface INotification {
+  id: string;
+  userId: string;
+  user?: IUser;
+  notification: string;
+  viewed: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IFeedback {
+  id: string;
+  userId: string;
+  user?: IUser;
+  comment: string;
+  suggestion?: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 export interface IBlog {
   id: string;
   title: string;
   description: string;
   photo?: string;
-  userId: number;
+  userId: string;
   writtenBy?: IUser;
   createdAt: string;
   updatedAt: string;

@@ -1,6 +1,6 @@
 import { tagTypes } from '@/redux/tag-types';
 import { baseApi } from '../baseApi';
-import { IMeta, IUser } from '@/types';
+import { IBlog, IMeta } from '@/types';
 
 const BLOG_URL = '/blog';
 
@@ -20,7 +20,7 @@ export const blogApi = baseApi.injectEndpoints({
         method: 'GET',
         params: arg,
       }),
-      transformResponse: (response: IUser[], meta: IMeta) => {
+      transformResponse: (response: IBlog[], meta: IMeta) => {
         return {
           blogs: response,
           meta,

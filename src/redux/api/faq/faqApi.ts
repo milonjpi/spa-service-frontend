@@ -1,6 +1,6 @@
 import { tagTypes } from '@/redux/tag-types';
 import { baseApi } from '../baseApi';
-import { IMeta, IUser } from '@/types';
+import { IFaq, IMeta } from '@/types';
 
 const FAQ_URL = '/faq';
 
@@ -20,7 +20,7 @@ export const faqApi = baseApi.injectEndpoints({
         method: 'GET',
         params: arg,
       }),
-      transformResponse: (response: IUser[], meta: IMeta) => {
+      transformResponse: (response: IFaq[], meta: IMeta) => {
         return {
           faqs: response,
           meta,

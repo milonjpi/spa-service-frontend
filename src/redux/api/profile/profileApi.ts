@@ -1,6 +1,5 @@
 import { tagTypes } from '@/redux/tag-types';
 import { baseApi } from '../baseApi';
-import { IMeta, IUser } from '@/types';
 
 const USER_URL = '/profile';
 
