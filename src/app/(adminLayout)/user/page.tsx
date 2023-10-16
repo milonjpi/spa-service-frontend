@@ -1,11 +1,7 @@
-import React from 'react';
+import { redirect } from 'next/navigation';
 
 const UserPage = () => {
-  return (
-    <div>
-      <p>User Page</p>
-    </div>
-  );
+  return redirect('/profile');
 };
 
 export default UserPage;

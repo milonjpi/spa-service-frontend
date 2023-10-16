@@ -1,14 +1,24 @@
-import { Avatar, Button, Dropdown, Layout, MenuProps, Row, Space } from 'antd';
+import {
+  Avatar,
+  Button,
+  Dropdown,
+  Layout,
+  MenuProps,
+  Row,
+  Space,
+  Spin,
+} from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { getUserInfo, removeUserInfo } from '@/services/auth.service';
 import { authKey } from '@/constants/storageKey';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useGetProfileQuery } from '@/redux/api/profile/profileApi';
 const { Header: AntHeader } = Layout;
 
 const DashboardHeader = () => {
   const router = useRouter();
-  const { role } = getUserInfo() as any;
+  const { data, isLoading } = useGetProfileQuery('');
 
   const logOut = () => {
     removeUserInfo(authKey);
@@ -43,13 +53,13 @@ const DashboardHeader = () => {
           height: '100%',
         }}
       >
-        <p
+        <div
           style={{
             margin: '0px 5px',
           }}
         >
-          {role}
-        </p>
+          {isLoading ? <Spin size="small" /> : data?.fullName}
+        </div>
         <Dropdown menu={{ items }}>
           <a>
             <Space wrap size={16}>

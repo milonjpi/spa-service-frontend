@@ -28,6 +28,13 @@ export const serviceApi = baseApi.injectEndpoints({
       },
       providesTags: [tagTypes.service],
     }),
+    getSingleService: build.query({
+      query: (id: string | undefined) => ({
+        url: `${SERVICE_URL}/${id}`,
+        method: 'GET',
+      }),
+      providesTags: [tagTypes.service],
+    }),
     deleteService: build.mutation({
       query: (id: string) => ({
         url: `${SERVICE_URL}/${id}`,
@@ -49,6 +56,7 @@ export const serviceApi = baseApi.injectEndpoints({
 export const {
   useCreateServiceMutation,
   useGetServiceQuery,
+  useGetSingleServiceQuery,
   useUpdateServiceMutation,
   useDeleteServiceMutation,
 } = serviceApi;

@@ -10,6 +10,7 @@ const ErrorPage = () => {
       style={{
         height: '100vh',
         color: 'red',
+        flexDirection: 'column',
       }}
     >
       <h1 style={{ fontSize: 100 }}>Woops!!!</h1>

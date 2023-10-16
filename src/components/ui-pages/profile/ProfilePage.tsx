@@ -19,7 +19,7 @@ const ProfilePage = () => {
         <Row align="middle">
           <h3 style={{ lineHeight: 1 }}>Profile Information</h3>
           {isLoading ? (
-            <Spin size="small" />
+            <Spin size="small" style={{ marginLeft: 10 }} />
           ) : (
             <Tooltip title="Edit Profile">
               <Button type="link" onClick={() => setOpen(true)}>
