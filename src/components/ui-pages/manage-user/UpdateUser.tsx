@@ -1,9 +1,10 @@
 import Form from '@/components/Forms/Form';
 import FormInput from '@/components/Forms/FormInput';
 import FormSelectField from '@/components/Forms/FormSelectField';
-import { roleOptions } from '@/constants/global';
+import { USER_ROLE } from '@/constants/role';
 import { useUpdateUserMutation } from '@/redux/api/user/userApi';
 import { updateUserSchema } from '@/schemas/userSchema';
+import { getUserInfo } from '@/services/auth.service';
 import { IUser } from '@/types';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Col, Modal, Row, message } from 'antd';
@@ -25,6 +26,30 @@ type FormValues = {
 };
 
 const UpdateUser = ({ open, handleClose, preData }: IProps) => {
+  const { role } = getUserInfo() as any;
+
+  const roleOptions =
+    role === USER_ROLE.SUPER_ADMIN
+      ? [
+          {
+            label: 'Super Admin',
+            value: 'super_admin',
+          },
+          {
+            label: 'Admin',
+            value: 'admin',
+          },
+        ]
+      : [
+          {
+            label: 'Admin',
+            value: 'admin',
+          },
+          {
+            label: 'User',
+            value: 'user',
+          },
+        ];
   const [updateUser] = useUpdateUserMutation();
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {

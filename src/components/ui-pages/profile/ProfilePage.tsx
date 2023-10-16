@@ -6,6 +6,7 @@ import { Button, Col, Row, Spin, Tooltip } from 'antd';
 import { EditOutlined, KeyOutlined } from '@ant-design/icons';
 import UpdateProfile from './UpdateProfile';
 import { useState } from 'react';
+import ChangePassword from './ChangePassword';
 
 const ProfilePage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -17,20 +18,34 @@ const ProfilePage = () => {
       title={
         <Row align="middle">
           <h3 style={{ lineHeight: 1 }}>Profile Information</h3>
-          <Tooltip title="Edit Profile">
-            <Button type="link" onClick={() => setOpen(true)}>
-              <EditOutlined />
-            </Button>
-          </Tooltip>
+          {isLoading ? (
+            <Spin size="small" />
+          ) : (
+            <Tooltip title="Edit Profile">
+              <Button type="link" onClick={() => setOpen(true)}>
+                <EditOutlined />
+              </Button>
+            </Tooltip>
+          )}
         </Row>
       }
       extra={
-        <Button size="small" type="primary" icon={<KeyOutlined />} ghost>
-          Change Password
-        </Button>
+        isLoading ? (
+          <Spin size="small" />
+        ) : (
+          <Button
+            type="primary"
+            icon={<KeyOutlined />}
+            ghost
+            onClick={() => setChange(true)}
+          >
+            Change Password
+          </Button>
+        )
       }
     >
       {/* popup items */}
+      <ChangePassword open={change} handleClose={() => setChange(false)} />
       <UpdateProfile
         open={open}
         handleClose={() => setOpen(false)}

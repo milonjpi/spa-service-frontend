@@ -36,13 +36,13 @@ const ChangePassword = ({ open, handleClose }: IProps) => {
       title="Change Password"
       open={open}
       onCancel={handleClose}
-      width={300}
+      width={400}
       footer={null}
     >
       <div style={{ paddingTop: 10 }}>
         <Form submitHandler={onSubmit} resolver={yupResolver(passwordSchema)}>
           <Row gutter={[16, 16]}>
-            <Col xs={24} md={12}>
+            <Col xs={24}>
               <FormInput
                 type="text"
                 name="password"

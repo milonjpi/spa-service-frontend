@@ -11,9 +11,12 @@ import { Button, Input, Row } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 import { IUser } from '@/types';
 import ManageUserAction from './ManageUserAction';
+import { getUserInfo } from '@/services/auth.service';
+import { USER_ROLE } from '@/constants/role';
 
 const ManageUserPage = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const { role } = getUserInfo() as any;
 
   // filtering and pagination
   const query: Record<string, any> = {};
@@ -28,6 +31,12 @@ const ManageUserPage = () => {
   query['page'] = page;
   query['sortBy'] = sortBy;
   query['sortOrder'] = sortOrder;
+
+  if (role === USER_ROLE.SUPER_ADMIN) {
+    query['role'] = JSON.stringify(['super_admin', 'admin']);
+  } else {
+    query['role'] = JSON.stringify(['admin', 'user']);
+  }
 
   const debouncedSearchTerm = useDebounced({
     searchQuery: searchTerm,
