@@ -85,7 +85,7 @@ const ManageUserPage = () => {
       sorter: true,
     },
     {
-      title: 'Address',
+      title: 'Mobile',
       dataIndex: 'mobile',
       render: (el: string) => el || 'n/a',
     },

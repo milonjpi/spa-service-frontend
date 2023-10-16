@@ -39,3 +39,21 @@ export interface IUser {
   createdAt: string;
   updatedAt: string;
 }
+
+export type IRole = 'super_admin' | 'admin' | 'user';
+
+export interface IService {
+  id: string;
+  serviceNo: string;
+  serviceName: string;
+  description: string;
+  category: string;
+  photo?: string;
+  price: number;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type IServiceCategory = 'male' | 'female';
+export type IServiceStatus = 'upcoming' | 'available' | 'notAvailable';
