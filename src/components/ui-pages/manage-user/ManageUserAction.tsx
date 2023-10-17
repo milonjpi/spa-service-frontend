@@ -6,7 +6,7 @@ import { useDeleteUserMutation } from '@/redux/api/user/userApi';
 import ConfirmDialog from '@/components/ui-components/ConfirmDialog';
 import UpdateUser from './UpdateUser';
 
-type IProps = {
+interface IProps {
   data: IUser;
 };
 

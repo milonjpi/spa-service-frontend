@@ -17,7 +17,11 @@ type FormValues = {
   password: string;
 };
 
-const LoginPage = () => {
+interface IProps {
+  callbackUrl?: string | undefined;
+};
+
+const LoginPage = ({ callbackUrl }: IProps) => {
   const router = useRouter();
   const [login] = useLoginMutation();
 
@@ -26,7 +30,7 @@ const LoginPage = () => {
     try {
       const res = await login({ ...data }).unwrap();
       if (res?.accessToken) {
-        router.push('/profile');
+        router.push(callbackUrl ? callbackUrl : '/profile');
         message.success('Logged in successfully!');
       }
       storeUserInfo({ accessToken: res?.accessToken });

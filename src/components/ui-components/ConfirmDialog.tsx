@@ -1,7 +1,7 @@
 import { Modal } from 'antd';
 import React from 'react';
 
-type IProps = {
+interface IProps {
   title?: string;
   open: boolean;
   onOk: any;

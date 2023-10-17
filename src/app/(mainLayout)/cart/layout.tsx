@@ -1,13 +1,11 @@
 'use client';
+
 import { getPublicUrl } from '@/helper/config';
-import DashboardContent from './DashboardContent';
-import DashboardSidebar from './DashboardSidebar';
 import { isLoggedIn } from '@/services/auth.service';
-import { Layout, Row, Space, Spin } from 'antd';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+const CartLayout = ({ children }: { children: React.ReactNode }) => {
   const userLoggedIn = isLoggedIn();
   const router = useRouter();
   const path = usePathname();
@@ -27,13 +25,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       </div>
     );
   }
-
-  return (
-    <Layout hasSider>
-      <DashboardSidebar />
-      <DashboardContent>{children}</DashboardContent>
-    </Layout>
-  );
+  return <>{children}</>;
 };
 
-export default DashboardLayout;
+export default CartLayout;

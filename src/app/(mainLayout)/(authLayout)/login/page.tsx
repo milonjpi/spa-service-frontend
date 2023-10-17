@@ -6,8 +6,12 @@ export const metadata: Metadata = {
   title: '24/7 Spa | Login',
 };
 
-const Login = () => {
-  return <LoginPage />;
+const Login = ({
+  searchParams,
+}: {
+  searchParams: { callbackUrl?: string | undefined };
+}) => {
+  return <LoginPage callbackUrl={searchParams?.callbackUrl} />;
 };
 
 export default Login;

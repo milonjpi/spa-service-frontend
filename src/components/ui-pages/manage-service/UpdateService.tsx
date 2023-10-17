@@ -10,7 +10,7 @@ import { Button, Col, Modal, Row, message } from 'antd';
 import React from 'react';
 import { SubmitHandler } from 'react-hook-form';
 
-type IProps = {
+interface IProps {
   open: boolean;
   handleClose: any;
   preData: IService;

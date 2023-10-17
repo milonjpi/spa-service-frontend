@@ -11,7 +11,7 @@ import defaultPhoto from './default-spa.jpg';
 
 const { Title, Paragraph } = Typography;
 
-type IProps = {
+interface IProps {
   id: string;
 };
 

@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 
 const AdminAuthLayout = ({ children }: { children: React.ReactNode }) => {
   const { role } = getUserInfo() as any;
-  console.log(role);
 
   const [auth, setAuth] = useState<boolean>(false);
 

@@ -6,7 +6,7 @@ import ConfirmDialog from '@/components/ui-components/ConfirmDialog';
 import { useDeleteFaqMutation } from '@/redux/api/faq/faqApi';
 import UpdateFaq from './UpdateFaq';
 
-type IProps = {
+interface IProps {
   data: IFaq;
 };
 

@@ -6,7 +6,7 @@ import ConfirmDialog from '@/components/ui-components/ConfirmDialog';
 import { useDeleteBlogMutation } from '@/redux/api/blog/blogApi';
 import UpdateBlog from './UpdateBlog';
 
-type IProps = {
+interface IProps {
   data: IBlog;
 };
 

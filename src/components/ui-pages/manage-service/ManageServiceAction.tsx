@@ -6,7 +6,7 @@ import ConfirmDialog from '@/components/ui-components/ConfirmDialog';
 import UpdateService from './UpdateService';
 import { useDeleteServiceMutation } from '@/redux/api/service/serviceApi';
 
-type IProps = {
+interface IProps {
   data: IService;
 };
 

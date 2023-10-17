@@ -9,20 +9,22 @@ import {
   Spin,
 } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { getUserInfo, removeUserInfo } from '@/services/auth.service';
+import { removeUserInfo } from '@/services/auth.service';
 import { authKey } from '@/constants/storageKey';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useGetProfileQuery } from '@/redux/api/profile/profileApi';
+import { getPublicUrl } from '@/helper/config';
 const { Header: AntHeader } = Layout;
 
 const DashboardHeader = () => {
   const router = useRouter();
+  const path = usePathname();
   const { data, isLoading } = useGetProfileQuery('');
 
   const logOut = () => {
     removeUserInfo(authKey);
-    router.push('/login');
+    router.push(`/login?callbackUrl=${getPublicUrl() + path}`);
   };
 
   const items: MenuProps['items'] = [

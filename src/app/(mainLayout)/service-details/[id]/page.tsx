@@ -1,7 +1,7 @@
 import ServiceDetails from '@/components/ui-pages/ServiceDetails';
 import { Metadata } from 'next';
 
-type IProps = {
+interface IProps {
   params: { id: string };
 };
 
