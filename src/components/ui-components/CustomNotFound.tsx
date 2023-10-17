@@ -1,7 +1,7 @@
 import { Row } from 'antd';
 import React from 'react';
 
-const ServiceNotFound = () => {
+const CustomNotFound = () => {
   return (
     <Row
       align="middle"
@@ -20,4 +20,4 @@ const ServiceNotFound = () => {
   );
 };
 
-export default ServiceNotFound;
+export default CustomNotFound;

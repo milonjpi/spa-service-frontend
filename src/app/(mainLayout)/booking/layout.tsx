@@ -5,7 +5,7 @@ import { isLoggedIn } from '@/services/auth.service';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-const CartLayout = ({ children }: { children: React.ReactNode }) => {
+const BookingLayout = ({ children }: { children: React.ReactNode }) => {
   const userLoggedIn = isLoggedIn();
   const router = useRouter();
   const path = usePathname();
@@ -28,4 +28,4 @@ const CartLayout = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
-export default CartLayout;
+export default BookingLayout;

@@ -2,18 +2,19 @@
 
 import { useGetSingleServiceQuery } from '@/redux/api/service/serviceApi';
 import { Avatar, Button, Col, Rate, Row, Spin, Typography } from 'antd';
-import { UserOutlined, PlusOutlined } from '@ant-design/icons';
-import ServiceNotFound from './ServiceNotFound';
+import { UserOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import { showServiceCategory, showServiceStatus } from '@/utils/showing';
 import { IReview } from '@/types';
 import defaultPhoto from './default-spa.jpg';
+import CustomNotFound from '@/components/ui-components/CustomNotFound';
+import Link from 'next/link';
 
 const { Title, Paragraph } = Typography;
 
 interface IProps {
   id: string;
-};
+}
 
 const ServiceDetails = ({ id }: IProps) => {
   const { data, isLoading } = useGetSingleServiceQuery(id);
@@ -30,7 +31,7 @@ const ServiceDetails = ({ id }: IProps) => {
           <Spin size="large" />
         </Row>
       ) : data ? (
-        <div style={{ padding: '100px 0' }}>
+        <div style={{ padding: '100px 0', maxWidth: 1200, margin: 'auto' }}>
           <Row gutter={[48, 64]}>
             <Col xs={24} md={12}>
               <div style={{ width: '100%', height: 500, position: 'relative' }}>
@@ -39,7 +40,7 @@ const ServiceDetails = ({ id }: IProps) => {
                   fill={true}
                   style={{ position: 'absolute' }}
                   objectFit="cover"
-                  alt="product photo"
+                  alt="service photo"
                 />
               </div>
             </Col>
@@ -83,19 +84,16 @@ const ServiceDetails = ({ id }: IProps) => {
                   </Title>
                   <Paragraph>{data?.description}</Paragraph>
                 </div>
-                <Row align="middle">
+
+                <Link href={`/booking/${data?.id}`}>
                   <Button
                     type="primary"
                     size="large"
-                    icon={<PlusOutlined />}
-                    style={{ marginRight: 20 }}
+                    icon={<ShoppingCartOutlined />}
                   >
-                    Add To Cart
+                    Book Now
                   </Button>
-                  <Button type="primary" size="large">
-                    Go to Cart
-                  </Button>
-                </Row>
+                </Link>
               </div>
             </Col>
 
@@ -126,7 +124,7 @@ const ServiceDetails = ({ id }: IProps) => {
           </Row>
         </div>
       ) : (
-        <ServiceNotFound />
+        <CustomNotFound />
       )}
     </>
   );

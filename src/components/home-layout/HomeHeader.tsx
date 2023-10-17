@@ -7,17 +7,14 @@ import styles from './Home.module.css';
 import { mainMenuItems } from '@/constants/homeHeaderItems';
 import { isLoggedIn, removeUserInfo } from '@/services/auth.service';
 import { authKey } from '@/constants/storageKey';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const HomeHeader = () => {
   const userLoggedIn = isLoggedIn();
-  const router = useRouter();
   const [login, setLogin] = useState<boolean>(userLoggedIn);
 
   const logOut = () => {
     removeUserInfo(authKey);
-    router.push('/login');
     setLogin(false);
   };
   const extendedItems: MenuProps['items'] = [
