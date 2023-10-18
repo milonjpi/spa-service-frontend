@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 const SuperAdminLayout = ({ children }: { children: React.ReactNode }) => {
   const { role } = getUserInfo() as any;
 
-  const [auth, setAuth] = useState<boolean>(false);
+  const [auth, setAuth] = useState<boolean>(true);
 
   useEffect(() => {
     if (role === USER_ROLE.SUPER_ADMIN) {

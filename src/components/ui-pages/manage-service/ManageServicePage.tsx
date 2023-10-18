@@ -40,7 +40,7 @@ const ManageServicePage = () => {
   }
   const { data, isLoading } = useGetServiceQuery({ ...query });
 
-  const users = data?.services;
+  const services = data?.services;
   const meta = data?.meta;
   const onPaginationChange = (page: number, pageSize: number) => {
     console.log('Page:', page, 'PageSize:', pageSize);
@@ -139,7 +139,7 @@ const ManageServicePage = () => {
         rowKey="id"
         loading={isLoading}
         columns={columns}
-        dataSource={users}
+        dataSource={services}
         pageSize={size}
         totalPages={meta?.totalPage}
         showSizeChanger={true}

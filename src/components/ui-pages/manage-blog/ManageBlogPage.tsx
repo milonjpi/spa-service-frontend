@@ -39,7 +39,7 @@ const ManageBlogPage = () => {
   }
   const { data, isLoading } = useGetBlogQuery({ ...query });
 
-  const users = data?.blogs;
+  const blogs = data?.blogs;
   const meta = data?.meta;
   const onPaginationChange = (page: number, pageSize: number) => {
     console.log('Page:', page, 'PageSize:', pageSize);
@@ -124,7 +124,7 @@ const ManageBlogPage = () => {
         rowKey="id"
         loading={isLoading}
         columns={columns}
-        dataSource={users}
+        dataSource={blogs}
         pageSize={size}
         totalPages={meta?.totalPage}
         showSizeChanger={true}

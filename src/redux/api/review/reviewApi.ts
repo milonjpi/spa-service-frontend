@@ -1,7 +1,7 @@
 import { tagTypes } from '@/redux/tag-types';
 import { baseApi } from '../baseApi';
 
-const REVIEW_URL = '/blog';
+const REVIEW_URL = '/review';
 
 export const reviewApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

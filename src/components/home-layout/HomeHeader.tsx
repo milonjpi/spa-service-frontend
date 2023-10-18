@@ -8,14 +8,19 @@ import { mainMenuItems } from '@/constants/homeHeaderItems';
 import { isLoggedIn, removeUserInfo } from '@/services/auth.service';
 import { authKey } from '@/constants/storageKey';
 import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { getPublicUrl } from '@/helper/config';
 
 const HomeHeader = () => {
   const userLoggedIn = isLoggedIn();
+  const router = useRouter();
+  const path = usePathname();
   const [login, setLogin] = useState<boolean>(userLoggedIn);
 
   const logOut = () => {
     removeUserInfo(authKey);
     setLogin(false);
+    router.push(`/login?callbackUrl=${getPublicUrl() + path}`);
   };
   const extendedItems: MenuProps['items'] = [
     {

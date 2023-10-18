@@ -1,20 +1,17 @@
 'use client';
 
-import CardAction from '@/components/ui-components/CardAction';
 import MainCard from '@/components/ui-components/MainCard';
 import { useState } from 'react';
 import SpaTable from '@/components/ui-components/SpaTable';
-import { useDebounced } from '@/redux/hooks';
-import { Button, Input, Row } from 'antd';
+import { Button, Row } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
-import { IFaq } from '@/types';
-import { useGetFaqQuery } from '@/redux/api/faq/faqApi';
-import ManageFaqAction from './ManageFaqAction';
-import CreateFaq from './CreateFaq';
+import { IBooking, IService, IUser } from '@/types';
+import { useGetBookingQuery } from '@/redux/api/booking/bookingApi';
+import dayjs from 'dayjs';
+import BookingHistoryAction from './BookingHistoryAction';
+import ShowBookingStatus from '@/components/ui-components/ShowBookingStatus';
 
-const ManageFaqPage = () => {
-  const [open, setOpen] = useState<boolean>(false);
-
+const BookingHistoryPage = () => {
   // filtering and pagination
   const query: Record<string, any> = {};
 
@@ -22,24 +19,15 @@ const ManageFaqPage = () => {
   const [size, setSize] = useState<number>(10);
   const [sortBy, setSortBy] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<string>('');
-  const [searchTerm, setSearchTerm] = useState<string>('');
 
   query['limit'] = size;
   query['page'] = page;
   query['sortBy'] = sortBy;
   query['sortOrder'] = sortOrder;
 
-  const debouncedSearchTerm = useDebounced({
-    searchQuery: searchTerm,
-    delay: 600,
-  });
+  const { data, isLoading } = useGetBookingQuery({ ...query });
 
-  if (!!debouncedSearchTerm) {
-    query['searchTerm'] = debouncedSearchTerm;
-  }
-  const { data, isLoading } = useGetFaqQuery({ ...query });
-
-  const faqs = data?.faqs;
+  const bookings = data?.bookings;
   const meta = data?.meta;
   const onPaginationChange = (page: number, pageSize: number) => {
     console.log('Page:', page, 'PageSize:', pageSize);
@@ -55,7 +43,6 @@ const ManageFaqPage = () => {
   const resetFilters = () => {
     setSortBy('');
     setSortOrder('');
-    setSearchTerm('');
   };
 
   // end filtering and pagination
@@ -66,42 +53,45 @@ const ManageFaqPage = () => {
       render: (data: any, item: any, index: any) => (page - 1) * 10 + index + 1,
     },
     {
-      title: 'Question',
-      dataIndex: 'question',
+      title: 'Booking No',
+      dataIndex: 'bookingNo',
       sorter: true,
     },
     {
-      title: 'Answer',
-      dataIndex: 'answer',
+      title: 'Service name',
+      dataIndex: 'service',
+      render: (el: IService) => el?.serviceName,
+    },
+    {
+      title: 'Service Price',
+      dataIndex: 'price',
+      sorter: true,
+    },
+    {
+      title: 'Schedule Time',
+      dataIndex: 'scheduleTime',
+      render: (el: string) => dayjs(el).format('MMM D, YYYY h:mm A'),
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      render: (el: 'pending' | 'confirmed' | 'canceled' | 'completed') => (
+        <ShowBookingStatus status={el} />
+      ),
     },
     {
       title: 'Action',
       align: 'center',
-      render: (data: IFaq) => <ManageFaqAction data={data} />,
+      render: (data: IBooking) => <BookingHistoryAction data={data} />,
     },
   ];
 
   return (
-    <MainCard
-      title="Manage FAQ"
-      extra={<CardAction title="Add FAQ" onClick={() => setOpen(true)} />}
-    >
-      {/* popup Items */}
-      <CreateFaq open={open} handleClose={() => setOpen(false)} />
-      {/* popup Items */}
-
+    <MainCard title="Booking History">
       {/* filter area */}
-      <Row align="middle" justify="space-between" style={{ marginBottom: 20 }}>
-        <Input
-          size="large"
-          placeholder="Search"
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            width: 250,
-          }}
-        />
+      <Row align="middle" justify="end" style={{ marginBottom: 20 }}>
         <div>
-          {(!!sortBy || !!sortOrder || !!searchTerm) && (
+          {(!!sortBy || !!sortOrder) && (
             <Button
               style={{ margin: '0px 5px' }}
               type="primary"
@@ -119,7 +109,7 @@ const ManageFaqPage = () => {
         rowKey="id"
         loading={isLoading}
         columns={columns}
-        dataSource={faqs}
+        dataSource={bookings}
         pageSize={size}
         totalPages={meta?.totalPage}
         showSizeChanger={true}
@@ -131,4 +121,4 @@ const ManageFaqPage = () => {
   );
 };
 
-export default ManageFaqPage;
+export default BookingHistoryPage;

@@ -23,3 +23,5 @@ export const serviceStatus = [
     value: 'notAvailable',
   },
 ];
+
+export const serviceRating = ['terrible', 'bad', 'normal', 'good', 'wonderful'];

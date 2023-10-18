@@ -3,7 +3,7 @@ import { getPublicUrl } from '@/helper/config';
 import DashboardContent from './DashboardContent';
 import DashboardSidebar from './DashboardSidebar';
 import { isLoggedIn } from '@/services/auth.service';
-import { Layout, Row, Space, Spin } from 'antd';
+import { Layout } from 'antd';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 

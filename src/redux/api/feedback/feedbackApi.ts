@@ -41,6 +41,13 @@ export const feedbackApi = baseApi.injectEndpoints({
       },
       providesTags: [tagTypes.feedback],
     }),
+    deleteFeedback: build.mutation({
+      query: (id: string) => ({
+        url: `${FEEDBACK_URL}/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: [tagTypes.feedback],
+    }),
   }),
 });
 
@@ -48,4 +55,5 @@ export const {
   useCreateFeedbackMutation,
   useGetFeedbackQuery,
   useGetPublicFeedbackQuery,
+  useDeleteFeedbackMutation,
 } = feedbackApi;

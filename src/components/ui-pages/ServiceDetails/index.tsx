@@ -6,7 +6,7 @@ import { UserOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import { showServiceCategory, showServiceStatus } from '@/utils/showing';
 import { IReview } from '@/types';
-import defaultPhoto from './default-spa.jpg';
+import defaultPhoto from '@/assets/images/spa-big.jpg';
 import CustomNotFound from '@/components/ui-components/CustomNotFound';
 import Link from 'next/link';
 
@@ -78,7 +78,7 @@ const ServiceDetails = ({ id }: IProps) => {
                     <Rate disabled defaultValue={serviceRating} />
                   </div>
                 </div>
-                <div>
+                <div style={{ marginBottom: 40 }}>
                   <Title level={4} style={{ fontWeight: 700 }}>
                     Description:
                   </Title>

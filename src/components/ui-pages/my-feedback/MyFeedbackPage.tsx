@@ -7,12 +7,12 @@ import SpaTable from '@/components/ui-components/SpaTable';
 import { useDebounced } from '@/redux/hooks';
 import { Button, Input, Row } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
-import { IFaq } from '@/types';
-import { useGetFaqQuery } from '@/redux/api/faq/faqApi';
-import ManageFaqAction from './ManageFaqAction';
-import CreateFaq from './CreateFaq';
+import { useGetFeedbackQuery } from '@/redux/api/feedback/feedbackApi';
+import CreateFeedback from './CreateFeedback';
+import { IFeedback } from '@/types';
+import MyFeedbackPageAction from './MyFeedbackPageAction';
 
-const ManageFaqPage = () => {
+const MyFeedbackPage = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   // filtering and pagination
@@ -37,9 +37,9 @@ const ManageFaqPage = () => {
   if (!!debouncedSearchTerm) {
     query['searchTerm'] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useGetFaqQuery({ ...query });
+  const { data, isLoading } = useGetFeedbackQuery({ ...query });
 
-  const faqs = data?.faqs;
+  const feedbacks = data?.feedbacks;
   const meta = data?.meta;
   const onPaginationChange = (page: number, pageSize: number) => {
     console.log('Page:', page, 'PageSize:', pageSize);
@@ -66,28 +66,28 @@ const ManageFaqPage = () => {
       render: (data: any, item: any, index: any) => (page - 1) * 10 + index + 1,
     },
     {
-      title: 'Question',
-      dataIndex: 'question',
+      title: 'Comment',
+      dataIndex: 'comment',
       sorter: true,
     },
     {
-      title: 'Answer',
-      dataIndex: 'answer',
+      title: 'Suggestion',
+      dataIndex: 'suggestion',
     },
     {
       title: 'Action',
       align: 'center',
-      render: (data: IFaq) => <ManageFaqAction data={data} />,
+      render: (data: IFeedback) => <MyFeedbackPageAction data={data} />,
     },
   ];
 
   return (
     <MainCard
-      title="Manage FAQ"
-      extra={<CardAction title="Add FAQ" onClick={() => setOpen(true)} />}
+      title="My Feedbacks"
+      extra={<CardAction title="New Feedback" onClick={() => setOpen(true)} />}
     >
       {/* popup Items */}
-      <CreateFaq open={open} handleClose={() => setOpen(false)} />
+      <CreateFeedback open={open} handleClose={() => setOpen(false)} />
       {/* popup Items */}
 
       {/* filter area */}
@@ -119,7 +119,7 @@ const ManageFaqPage = () => {
         rowKey="id"
         loading={isLoading}
         columns={columns}
-        dataSource={faqs}
+        dataSource={feedbacks}
         pageSize={size}
         totalPages={meta?.totalPage}
         showSizeChanger={true}
@@ -131,4 +131,4 @@ const ManageFaqPage = () => {
   );
 };
 
-export default ManageFaqPage;
+export default MyFeedbackPage;
