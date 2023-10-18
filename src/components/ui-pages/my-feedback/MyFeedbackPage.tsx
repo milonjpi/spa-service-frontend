@@ -42,7 +42,6 @@ const MyFeedbackPage = () => {
   const feedbacks = data?.feedbacks;
   const meta = data?.meta;
   const onPaginationChange = (page: number, pageSize: number) => {
-    console.log('Page:', page, 'PageSize:', pageSize);
     setPage(page);
     setSize(pageSize);
   };

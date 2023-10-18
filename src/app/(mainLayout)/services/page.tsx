@@ -1,11 +1,12 @@
-import React from 'react';
+import ServicePage from '@/components/ui-pages/ServicePage';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '24/7 Spa | Services',
+};
 
 const Services = () => {
-  return (
-    <div>
-      <p>Services</p>
-    </div>
-  );
+  return <ServicePage />;
 };
 
 export default Services;

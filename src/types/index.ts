@@ -34,7 +34,7 @@ export interface IUser {
   password: string;
   mobile?: string;
   address?: string;
-  role: string;
+  role: IRole;
   profileImg?: string;
   createdAt: string;
   updatedAt: string;
@@ -52,10 +52,10 @@ export interface IService {
   serviceNo: string;
   serviceName: string;
   description: string;
-  category: string;
+  category: IServiceCategory;
   photo?: string;
   price: number;
-  status: string;
+  status: IServiceStatus;
   createdAt: string;
   updatedAt: string;
   reviewRatings?: IReview[];
