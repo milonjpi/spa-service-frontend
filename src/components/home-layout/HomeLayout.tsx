@@ -17,7 +17,7 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
       <HomeHeader />
       <Content
         style={{
-          padding: '12px 24px',
+          padding: '0px 24px',
           minHeight: '60vh',
         }}
       >

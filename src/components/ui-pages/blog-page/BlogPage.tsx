@@ -8,7 +8,7 @@ import { Col, Divider, Row, Spin, Typography } from 'antd';
 const { Title } = Typography;
 
 const BlogPage = () => {
-  // filtering and pagination
+
   const query: Record<string, any> = {};
 
   query['limit'] = 100;
@@ -18,7 +18,6 @@ const BlogPage = () => {
 
   const blogs = data?.blogs || [];
 
-  // end filtering and pagination
   return (
     <div style={{ maxWidth: 1200, padding: '50px 0', margin: 'auto' }}>
       <Title>Latest Blogs</Title>

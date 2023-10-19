@@ -97,7 +97,7 @@ const ServicePage = () => {
   const totalDocs = meta?.totalPage || 0;
   return (
     <div style={{ padding: '50px 20px', maxWidth: 1440, margin: 'auto' }}>
-      <Row gutter={[30, 30]}>
+      <Row gutter={[36, 36]}>
         <Col xs={24} md={6}>
           <Row gutter={[30, 30]}>
             <Col xs={24}>
@@ -201,7 +201,7 @@ const ServicePage = () => {
               <Spin size="large" />
             </div>
           ) : (
-            <Row gutter={[16, 16]}>
+            <Row gutter={[28, 60]}>
               {totalDocs ? (
                 services?.map((el: IService) => (
                   <Col key={el.id} xs={24} sm={12} lg={8}>
