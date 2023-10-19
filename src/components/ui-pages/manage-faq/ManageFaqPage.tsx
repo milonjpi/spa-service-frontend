@@ -37,7 +37,10 @@ const ManageFaqPage = () => {
   if (!!debouncedSearchTerm) {
     query['searchTerm'] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useGetFaqQuery({ ...query });
+  const { data, isLoading } = useGetFaqQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
 
   const faqs = data?.faqs;
   const meta = data?.meta;

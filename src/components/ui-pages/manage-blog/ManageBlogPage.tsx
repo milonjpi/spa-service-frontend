@@ -37,7 +37,10 @@ const ManageBlogPage = () => {
   if (!!debouncedSearchTerm) {
     query['searchTerm'] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useGetBlogQuery({ ...query });
+  const { data, isLoading } = useGetBlogQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
 
   const blogs = data?.blogs;
   const meta = data?.meta;

@@ -12,7 +12,9 @@ const ProfilePage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [change, setChange] = useState<boolean>(false);
 
-  const { data, isLoading } = useGetProfileQuery('');
+  const { data, isLoading } = useGetProfileQuery('', {
+    refetchOnMountOrArgChange: true,
+  });
   return (
     <MainCard
       title={

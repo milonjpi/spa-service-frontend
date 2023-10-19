@@ -12,7 +12,10 @@ const LatestNews = () => {
   query['limit'] = 4;
   query['page'] = 1;
 
-  const { data, isLoading } = useGetBlogQuery({ ...query });
+  const { data, isLoading } = useGetBlogQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
 
   const blogs = data?.blogs || [];
   return (

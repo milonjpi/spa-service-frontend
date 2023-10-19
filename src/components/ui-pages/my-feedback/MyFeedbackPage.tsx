@@ -37,7 +37,10 @@ const MyFeedbackPage = () => {
   if (!!debouncedSearchTerm) {
     query['searchTerm'] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useGetFeedbackQuery({ ...query });
+  const { data, isLoading } = useGetFeedbackQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
 
   const feedbacks = data?.feedbacks;
   const meta = data?.meta;

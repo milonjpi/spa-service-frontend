@@ -1,3 +1,4 @@
+import Notification from '@/components/ui-pages/Notification';
 import { MenuProps } from 'antd';
 const { default: Link } = require('next/link');
 
@@ -18,5 +19,9 @@ export const mainMenuItems: MenuProps['items'] = [
   {
     key: 'faqs',
     label: <Link href="/faqs">FAQs</Link>,
+  },
+  {
+    key: 'notification',
+    label: <Notification />,
   },
 ];

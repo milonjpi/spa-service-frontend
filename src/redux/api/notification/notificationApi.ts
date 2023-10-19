@@ -2,7 +2,7 @@ import { tagTypes } from '@/redux/tag-types';
 import { baseApi } from '../baseApi';
 import { IMeta, INotification } from '@/types';
 
-const NOTIFICATION_URL = '/faq';
+const NOTIFICATION_URL = '/notification';
 
 export const notificationApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

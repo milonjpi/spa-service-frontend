@@ -79,7 +79,10 @@ const ServicePage = () => {
   if (!!debouncedSearchTerm) {
     query['searchTerm'] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useGetServiceQuery({ ...query });
+  const { data, isLoading } = useGetServiceQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
 
   const services = data?.services;
   const meta = data?.meta;
@@ -217,7 +220,7 @@ const ServicePage = () => {
           )}
 
           {totalDocs ? (
-            <Row justify="end">
+            <Row justify="end" style={{ marginTop: 30 }}>
               <Pagination
                 showSizeChanger
                 onShowSizeChange={onPaginationChange}

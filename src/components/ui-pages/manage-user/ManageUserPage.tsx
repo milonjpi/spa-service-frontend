@@ -46,7 +46,10 @@ const ManageUserPage = () => {
   if (!!debouncedSearchTerm) {
     query['searchTerm'] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useGetUserQuery({ ...query });
+  const { data, isLoading } = useGetUserQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
 
   const users = data?.users;
   const meta = data?.meta;

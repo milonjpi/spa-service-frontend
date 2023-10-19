@@ -6,6 +6,7 @@ import ClientReview from './ClientReview';
 import EventCategories from './EventCategories';
 import HeroSection from './HeroSection';
 import LatestNews from './LatestNews';
+import OurGallery from './OurGallery';
 import Overview from './Overview';
 import UpcomingService from './UpcomingService';
 
@@ -20,6 +21,7 @@ const HomePage = () => {
       <Overview />
       <ClientReview />
       <LatestNews />
+      <OurGallery />
     </>
   );
 };

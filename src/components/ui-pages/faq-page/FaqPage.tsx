@@ -13,7 +13,10 @@ const FaqPage = () => {
   query['limit'] = 100;
   query['page'] = 1;
 
-  const { data, isLoading } = useGetFaqQuery({ ...query });
+  const { data, isLoading } = useGetFaqQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
 
   const faqs = data?.faqs || [];
 

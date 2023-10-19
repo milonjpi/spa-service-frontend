@@ -20,7 +20,9 @@ const { Header: AntHeader } = Layout;
 const DashboardHeader = () => {
   const router = useRouter();
   const path = usePathname();
-  const { data, isLoading } = useGetProfileQuery('');
+  const { data, isLoading } = useGetProfileQuery('', {
+    refetchOnMountOrArgChange: true,
+  });
 
   const logOut = () => {
     removeUserInfo(authKey);

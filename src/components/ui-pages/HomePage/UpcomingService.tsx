@@ -13,7 +13,10 @@ const UpcomingService = () => {
   query['page'] = 1;
   query['status'] = 'upcoming';
 
-  const { data, isLoading } = useGetServiceQuery({ ...query });
+  const { data, isLoading } = useGetServiceQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
 
   const services = data?.services || [];
   return (

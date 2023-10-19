@@ -27,7 +27,10 @@ const ManageBookingPage = () => {
   query['sortBy'] = sortBy;
   query['sortOrder'] = sortOrder;
 
-  const { data, isLoading } = useGetBookingQuery({ ...query });
+  const { data, isLoading } = useGetBookingQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
 
   const bookings = data?.bookings;
   const meta = data?.meta;

@@ -38,7 +38,10 @@ const ManageServicePage = () => {
   if (!!debouncedSearchTerm) {
     query['searchTerm'] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useGetServiceQuery({ ...query });
+  const { data, isLoading } = useGetServiceQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
 
   const services = data?.services;
   const meta = data?.meta;

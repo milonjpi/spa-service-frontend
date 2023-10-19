@@ -19,16 +19,21 @@ interface IProps {
 }
 
 const BlogDetailsPage = ({ id }: IProps) => {
-  const { data, isLoading } = useGetSingleBlogQuery(id);
+  const { data, isLoading } = useGetSingleBlogQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const query: Record<string, any> = {};
 
   query['limit'] = 100;
   query['page'] = 1;
 
-  const { data: allBlogs, isLoading: recentLoading } = useGetBlogQuery({
-    ...query,
-  });
+  const { data: allBlogs, isLoading: recentLoading } = useGetBlogQuery(
+    {
+      ...query,
+    },
+    { refetchOnMountOrArgChange: true }
+  );
 
   const totalBlogs = allBlogs?.blogs || [];
   const blogs = totalBlogs?.filter((el: IBlog) => el.id !== data?.id);

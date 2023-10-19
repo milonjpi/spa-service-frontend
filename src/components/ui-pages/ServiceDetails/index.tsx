@@ -17,7 +17,9 @@ interface IProps {
 }
 
 const ServiceDetails = ({ id }: IProps) => {
-  const { data, isLoading } = useGetSingleServiceQuery(id);
+  const { data, isLoading } = useGetSingleServiceQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const serviceRating = data?.reviewRatings?.reduce(
     (acc: number, el: IReview) => acc + el.rating,

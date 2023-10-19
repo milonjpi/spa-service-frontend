@@ -18,8 +18,12 @@ interface IProps {
 }
 
 const BookingPage = ({ id }: IProps) => {
-  const { data, isLoading } = useGetSingleServiceQuery(id);
-  const { data: profileData } = useGetProfileQuery('');
+  const { data, isLoading } = useGetSingleServiceQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
+  const { data: profileData } = useGetProfileQuery('', {
+    refetchOnMountOrArgChange: true,
+  });
 
   const [open, setOpen] = useState<boolean>(false);
 
