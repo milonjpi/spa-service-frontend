@@ -2,11 +2,14 @@
 
 import Form from '@/components/Forms/Form';
 import FormInput from '@/components/Forms/FormInput';
+import { useSignupMutation } from '@/redux/api/auth/authApi';
 import { loginSchema } from '@/schemas/login';
 import { signUpSchema } from '@/schemas/signUp';
+import { storeUserInfo } from '@/services/auth.service';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Card } from 'antd';
+import { Button, Card, message } from 'antd';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { SubmitHandler } from 'react-hook-form';
 
@@ -16,9 +19,26 @@ type FormValues = {
   password: string;
 };
 
-const RegisterPage = () => {
-  const onSubmit: SubmitHandler<FormValues> = (data: any) => {
-    console.log(data);
+interface IProps {
+  callbackUrl?: string | undefined;
+}
+
+const RegisterPage = ({ callbackUrl }: IProps) => {
+  const router = useRouter();
+  const [signup] = useSignupMutation();
+
+  const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
+    message.loading('Registering.....');
+    try {
+      const res = await signup({ ...data }).unwrap();
+      if (res?.accessToken) {
+        router.push(callbackUrl ? callbackUrl : '/profile');
+        message.success('Sign up and Logged in successfully!');
+      }
+      storeUserInfo({ accessToken: res?.accessToken });
+    } catch (err: any) {
+      message.error(`${err.data}`);
+    }
   };
   return (
     <div style={{ padding: '20px 0' }}>

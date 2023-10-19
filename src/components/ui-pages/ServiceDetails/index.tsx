@@ -37,9 +37,13 @@ const ServiceDetails = ({ id }: IProps) => {
               <div style={{ width: '100%', height: 500, position: 'relative' }}>
                 <Image
                   src={data?.photo ? data?.photo : defaultPhoto}
-                  fill={true}
-                  style={{ position: 'absolute' }}
-                  objectFit="cover"
+                  fill
+                  priority
+                  sizes="(min-width: 100%) 50vw, 100vw"
+                  style={{
+                    objectFit: 'cover',
+                    borderRadius: 10,
+                  }}
                   alt="service photo"
                 />
               </div>
@@ -54,10 +58,7 @@ const ServiceDetails = ({ id }: IProps) => {
                   </span>
                 </Paragraph>
                 <div style={{ paddingTop: 15 }}>
-                  <Paragraph style={{ paddingBottom: 15 }}>
-                    Price:{' '}
-                    <span style={{ fontWeight: 700 }}>{data?.price}</span>
-                  </Paragraph>
+                  <Title style={{ paddingBottom: 15 }}>{data?.price} TK</Title>
                   <Paragraph style={{ marginBottom: 25 }}>
                     Status:{' '}
                     <span

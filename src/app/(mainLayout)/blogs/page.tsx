@@ -1,11 +1,12 @@
-import React from 'react';
+import BlogPage from '@/components/ui-pages/blog-page/BlogPage';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '24/7 Spa | Blog',
+};
 
 const Blog = () => {
-  return (
-    <div>
-      <p>Blog Page</p>
-    </div>
-  );
+  return <BlogPage />;
 };
 
 export default Blog;

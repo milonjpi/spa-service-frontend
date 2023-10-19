@@ -5,6 +5,7 @@ import { Layout, Menu } from 'antd';
 import { sidebarItems } from '@/constants/sidebarItems';
 import { getUserInfo } from '@/services/auth.service';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 const { Sider } = Layout;
 
 const DashboardSidebar = () => {
@@ -39,7 +40,14 @@ const DashboardSidebar = () => {
           padding: '10px 0px',
         }}
       >
-        {'24/7 SPA'}
+        <Link
+          href="/"
+          style={{
+            color: '#fff',
+          }}
+        >
+          {'24/7 SPA'}
+        </Link>
       </div>
       <Menu
         theme="dark"

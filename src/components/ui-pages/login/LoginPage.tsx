@@ -83,7 +83,8 @@ const LoginPage = ({ callbackUrl }: IProps) => {
           </Form>
         </div>
         <p style={{ paddingTop: 5 }}>
-          Don&apos;t have an account? <Link href="/signup">Sign Up</Link>
+          Don&apos;t have an account?{' '}
+          <Link href={`/signup?callbackUrl=${callbackUrl}`}>Sign Up</Link>
         </p>
       </Card>
     </div>

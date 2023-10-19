@@ -52,20 +52,36 @@ const BookingPage = ({ id }: IProps) => {
                   marginBottom: 80,
                 }}
               >
-                <div style={{ marginRight: 20 }}>
+                <div
+                  style={{
+                    marginRight: 20,
+                    height: 100,
+                    width: 100,
+                    position: 'relative',
+                  }}
+                >
                   <Image
                     src={data?.photo ? data?.photo : defaultPhoto}
-                    width={100}
-                    height={100}
-                    priority
                     alt="Service photo"
+                    priority
+                    fill
+                    sizes="(min-width: 100px) 50vw, 100vw"
+                    style={{
+                      objectFit: 'cover',
+                      borderRadius: 10,
+                    }}
                   />
                 </div>
 
                 <div>
                   <div style={{ marginBottom: 10 }}>
                     <h3 style={{ lineHeight: 1, fontSize: 20 }}>
-                      {data?.serviceName}
+                      <Link
+                        href={`/service-details/${data?.id}`}
+                        style={{ color: '#111' }}
+                      >
+                        {data?.serviceName}
+                      </Link>
                     </h3>
                     <Paragraph
                       style={{
@@ -147,7 +163,11 @@ const BookingPage = ({ id }: IProps) => {
             </Col>
           </Row>
           {/* popup items */}
-          <CreateBooking open={open} handleClose={() => setOpen(false)} service={data} />
+          <CreateBooking
+            open={open}
+            handleClose={() => setOpen(false)}
+            service={data}
+          />
           {/* end popup items */}
         </div>
       ) : (

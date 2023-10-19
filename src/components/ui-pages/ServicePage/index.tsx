@@ -188,7 +188,7 @@ const ServicePage = () => {
           </Row>
         </Col>
         <Col xs={24} md={18}>
-          <h2>Spa Services</h2>
+          <h2 style={{ textTransform: 'uppercase' }}>Spa Services</h2>
           <Divider />
           {isLoading ? (
             <div

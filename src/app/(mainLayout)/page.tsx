@@ -1,11 +1,12 @@
-import React from 'react';
+import { Metadata } from 'next';
+import HomePage from '../../components/ui-pages/HomePage';
+
+export const metadata: Metadata = {
+  title: '24/7 Spa | Home',
+};
 
 const Home = () => {
-  return (
-    <div>
-      <h1>Next JS APP INITIALIZE</h1>
-    </div>
-  );
+  return <HomePage />;
 };
 
 export default Home;

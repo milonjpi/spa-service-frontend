@@ -30,11 +30,14 @@ const ServiceCard = ({ data }: IProps) => {
         cover={
           <div style={{ height: 250, width: '100%', position: 'relative' }}>
             <Image
-              fill={true}
-              objectFit="cover"
-              alt="example"
+              fill
+              priority
+              alt="service"
+              sizes="(min-width: 100%) 50vw, 100vw"
               src={data?.photo ? data?.photo : defaultPhoto}
-              style={{ position: 'absolute' }}
+              style={{
+                objectFit: 'cover',
+              }}
             />
           </div>
         }
