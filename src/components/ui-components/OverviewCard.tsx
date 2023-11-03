@@ -15,15 +15,15 @@ const OverviewCard = ({ data }: IProps) => {
       justify="center"
       style={{
         flexDirection: 'column',
-        background: data?.color,
         borderRadius: 10,
         height: 150,
+        boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
       }}
     >
-      <h3 style={{ color: '#fff', fontSize: 18, textTransform: 'uppercase' }}>
+      <h3 style={{ color: '#999', fontSize: 18, textTransform: 'uppercase' }}>
         {data?.title}
       </h3>
-      <h2 style={{ color: '#fff', fontSize: 36 }}>{data?.value}</h2>
+      <h2 style={{ color: '#666', fontSize: 36 }}>{data?.value}</h2>
     </Row>
   );
 };

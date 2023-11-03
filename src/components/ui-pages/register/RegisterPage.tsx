@@ -41,12 +41,12 @@ const RegisterPage = ({ callbackUrl }: IProps) => {
     }
   };
   return (
-    <div style={{ padding: '20px 0' }}>
+    <div style={{ padding: '60px 0' }}>
       <Card
         style={{
           width: 350,
           margin: 'auto',
-          boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
+          boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
         }}
       >
         <div style={{ textAlign: 'center', marginBottom: 20 }}>
